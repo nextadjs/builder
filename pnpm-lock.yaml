@@ -7,6 +7,13 @@ settings:
 importers:
 
   .:
+    dependencies:
+      iab-openrtb:
+        specifier: ^0.3.10
+        version: 0.3.10
+      uuid:
+        specifier: ^11.0.5
+        version: 11.0.5
     devDependencies:
       '@types/node':
         specifier: ^22.10.5
@@ -597,6 +604,10 @@ packages:
     resolution: {integrity: sha512-7Bv8RF0k6xjo7d4A/PxYLbUCfb6c+Vpd2/mB2yRDlew7Jb5hEXiCD9ibfO7wpk8i4sevK6DFny9h7EYbM3/sHg==}
     hasBin: true
 
+  iab-openrtb@0.3.10:
+    resolution: {integrity: sha512-DBMW+l/vwQU/ZojO/AaVox5Bx8MSIAscMObLy6WbYZ0UEiRTlOQQ0ZnaMjOXxx6E7fnEOWO4VYEkt9AkKo4zDg==}
+    engines: {node: '>=14.0.0'}
+
   is-fullwidth-code-point@3.0.0:
     resolution: {integrity: sha512-zymm5+u+sCsSWyD9qNaejV3DFvhCKclKdizYaJUuHA83RLjb7nSuGnddCHGv0hk+KY7BMAlsWeK4Ueg6EV6XQg==}
     engines: {node: '>=8'}
@@ -835,6 +846,10 @@ packages:
 
   undici-types@6.20.0:
     resolution: {integrity: sha512-Ny6QZ2Nju20vw1SRHe3d9jVu6gJ+4e3+MMpqu7pqE5HT6WsTSlce++GQmK5UXS8mzV8DSYHrQH+Xrf2jVcuKNg==}
+
+  uuid@11.0.5:
+    resolution: {integrity: sha512-508e6IcKLrhxKdBbcA2b4KQZlLVp2+J5UwQ6F7Drckkc5N9ZJwFa4TgWtsww9UG8fGHbm6gbV19TdM5pQ4GaIA==}
+    hasBin: true
 
   vite-node@2.1.8:
     resolution: {integrity: sha512-uPAwSr57kYjAUux+8E2j0q0Fxpn8M9VoyfGiRI8Kfktz9NcYMCenwY5RnZxnF1WTu3TGiYipirIzacLL3VVGFg==}
@@ -1351,6 +1366,8 @@ snapshots:
       package-json-from-dist: 1.0.1
       path-scurry: 1.11.1
 
+  iab-openrtb@0.3.10: {}
+
   is-fullwidth-code-point@3.0.0: {}
 
   isexe@2.0.0: {}
@@ -1567,6 +1584,8 @@ snapshots:
       - yaml
 
   undici-types@6.20.0: {}
+
+  uuid@11.0.5: {}
 
   vite-node@2.1.8(@types/node@22.10.5):
     dependencies:

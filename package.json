@@ -13,5 +13,9 @@
     "@types/node": "^22.10.5",
     "tsup": "^8.3.5",
     "vitest": "^2.1.8"
+  },
+  "dependencies": {
+    "iab-openrtb": "^0.3.10",
+    "uuid": "^11.0.5"
   }
 }

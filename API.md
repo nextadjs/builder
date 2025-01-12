@@ -24,7 +24,7 @@ const builder = new BidRequestBuilder();
 
 - withId(id: string): Sets the bid request ID (automatically generated using UUID if not specified)
 - withTest(test: 0 | 1): Sets the test mode flag
-- withAuctionTYpe(at: number): Sets the auction type
+- withAuctionType(at: number): Sets the auction type
 - withAllImps(allimps: 0 | 1): Sets the all impressions flag.
 - withCurrencies(cur: string[]): Sets the accepted currencies
 - withWhitelistedSeats(wseat: string[]): Sets the list of allowed buyer seats

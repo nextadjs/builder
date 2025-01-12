@@ -117,7 +117,7 @@ describe("Bid Response Builder", () => {
         method: "addNativeBid",
         args: [{ price: 2 }],
         expectedType: "mtype",
-        expectedValue: 3,
+        expectedValue: 4,
       },
     ])(
       "$method でメディアタイプ別のbidが作成される",

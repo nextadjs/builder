@@ -150,7 +150,7 @@ export class BidResponseBuilder {
     props: Partial<BidV26> & { impid: string; price: number }
   ): this {
     this.addBid({
-      mtype: 3,
+      mtype: 4,
       ...props,
     });
 

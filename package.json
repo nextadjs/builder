@@ -1,21 +1,54 @@
 {
   "name": "@nextad/builder",
   "version": "0.0.0",
-  "description": "",
+  "description": "A fluent builder library for OpenRTB 2.6 bid requests and responses with TypeScript support",
   "scripts": {
     "test": "vitest",
-    "tsup": "tsup"
+    "build": "tsup"
   },
-  "keywords": [],
+  "exports": {
+    ".": {
+      "import": "./src/index.ts",
+      "require": "./src/index.ts",
+      "types": "./src/index.ts"
+    },
+    "./v26": {
+      "import": "./src/2.6/index.ts",
+      "require": "./src/2.6/index.ts",
+      "types": "./src/2.6/index.ts"
+    }
+  },
+  "keywords": ["OpenRTB", "builder", "BidRequest", "BidResponse"],
+  "publishConfig": {
+    "access": "public",
+    "exports": {
+      ".": {
+        "import": "./dist/index.mjs",
+        "require": "./dist/index.js",
+        "types": "./dist/index.d.ts"
+      },
+      "./v26": {
+        "import": "./dist/2.6/index.mjs",
+        "require": "./dist/2.6/index.js",
+        "types": "./dist/2.6/index.d.ts"
+      }
+    }
+  },
   "author": "Kai Miyamoto",
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^22.10.5",
     "tsup": "^8.3.5",
+    "typescript": "^5.7.3",
     "vitest": "^2.1.8"
   },
   "dependencies": {
     "iab-openrtb": "^0.3.10",
     "uuid": "^11.0.5"
-  }
+  },
+  "files": [
+    "dist/",
+    "LICENCE",
+    "README.md"
+  ]
 }

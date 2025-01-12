@@ -1,6 +1,6 @@
 {
   "name": "@nextad/builder",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "A fluent builder library for OpenRTB 2.6 bid requests and responses with TypeScript support",
   "scripts": {
     "test": "vitest",
@@ -18,7 +18,12 @@
       "types": "./src/2.6/index.ts"
     }
   },
-  "keywords": ["OpenRTB", "builder", "BidRequest", "BidResponse"],
+  "keywords": [
+    "OpenRTB",
+    "builder",
+    "BidRequest",
+    "BidResponse"
+  ],
   "publishConfig": {
     "access": "public",
     "exports": {

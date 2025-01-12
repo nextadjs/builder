@@ -121,4 +121,4 @@ import { BidRequestBuilder, BidResponseBuilder } from "@nextad/builder/v26";
 
 ## ライセンス
 
-[MIT License](../LICENCE)
+[MIT License](../../LICENCE)

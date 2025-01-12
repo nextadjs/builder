@@ -1,4 +1,5 @@
 import { uuid } from "@/libraries/uuid";
+import type { IV26BidRequestBuilder } from "@/types/interface";
 import type {
   BidRequestV26,
   SiteV26,
@@ -14,7 +15,7 @@ import type {
 /**
  * Builder for creating OpenRTB 2.6 BidRequest objects
  */
-export class BidRequestBuilder {
+export class BidRequestBuilder implements IV26BidRequestBuilder {
   private request: Partial<BidRequestV26>;
   private currentImp: Partial<ImpV26> | null = null;
   private commonImpProps: Partial<ImpV26> = {};
@@ -50,8 +51,6 @@ export class BidRequestBuilder {
     this.currentImp = newImp;
     return this;
   }
-
-
 
   /**
    * Sets the site object
@@ -111,7 +110,7 @@ export class BidRequestBuilder {
   /**
    * Sets the test mode flag
    */
-  public  withTest(test: 0 | 1): this {
+  public withTest(test: 0 | 1): this {
     this.request.test = test;
     return this;
   }

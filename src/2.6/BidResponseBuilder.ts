@@ -1,11 +1,12 @@
 import { uuid } from "@/libraries/uuid";
+import type { IV26BidResponseBuilder } from "@/types/interface";
 import type { BidResponseV26, SeatBidV26, BidV26 } from "@/types/openrtb";
 import type { NoBidReasonCode } from "iab-openrtb/v26";
 
 /**
  * Builder for creating OpenRTB 2.6 BidResponse objects
  */
-export class BidResponseBuilder {
+export class BidResponseBuilder implements IV26BidResponseBuilder {
   private response: Partial<BidResponseV26>;
   private currentSeatBid: Partial<SeatBidV26> | null = null;
   private commonBidProps: Partial<BidV26> = {};

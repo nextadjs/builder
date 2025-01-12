@@ -43,5 +43,10 @@
     "dist/",
     "LICENCE",
     "README.md"
-  ]
+  ],
+  "homepage": "https://github.com/nextadjs/builder.git",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nextadjs/builder.git"
+  }
 }

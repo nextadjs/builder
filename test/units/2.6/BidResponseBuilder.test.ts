@@ -114,6 +114,12 @@ describe("Bid Response Builder", () => {
         expectedValue: 2,
       },
       {
+        method: "addAudioBid",
+        args: [{ price: 2 }],
+        expectedType: "mtype",
+        expectedValue: 3,
+      },
+      {
         method: "addNativeBid",
         args: [{ price: 2 }],
         expectedType: "mtype",

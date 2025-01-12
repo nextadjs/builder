@@ -103,7 +103,9 @@ export class BidResponseBuilder {
   /**
    * Adds a new bid to the current seatbid
    */
-  public addBid(props: Partial<BidV26> & { impid: string; price: number }): this {
+  public addBid(
+    props: Partial<BidV26> & { impid: string; price: number }
+  ): this {
     if (!this.currentSeatBid) {
       this.beginSeatBid();
     }
@@ -132,9 +134,25 @@ export class BidResponseBuilder {
   }
 
   /**
+   * Shortcut method for adding a audio bid
+   */
+  public addAudioBid(
+    props: Partial<BidV26> & { impid: string; price: number }
+  ): this {
+    this.addBid({
+      mtype: 3,
+      ...props,
+    });
+
+    return this;
+  }
+
+  /**
    * Shortcut method for adding a video bid
    */
-  public addVideoBid(props: Partial<BidV26> & { impid: string; price: number }): this {
+  public addVideoBid(
+    props: Partial<BidV26> & { impid: string; price: number }
+  ): this {
     this.addBid({
       mtype: 2,
       ...props,

@@ -6,18 +6,6 @@
     "test": "vitest",
     "build": "tsup"
   },
-  "exports": {
-    ".": {
-      "import": "./src/index.ts",
-      "require": "./src/index.ts",
-      "types": "./src/index.ts"
-    },
-    "./v26": {
-      "import": "./src/2.6/index.ts",
-      "require": "./src/2.6/index.ts",
-      "types": "./src/2.6/index.ts"
-    }
-  },
   "keywords": [
     "OpenRTB",
     "builder",

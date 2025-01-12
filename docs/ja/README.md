@@ -107,13 +107,6 @@ const response = builder.build();
 
 詳細な API ドキュメントは[API.md](./API.md)を参照してください。
 
-## インポート方法
-
-```typescript
-// OpenRTB 2.6ビルダーのインポート
-import { BidRequestBuilder, BidResponseBuilder } from "@nextad/builder/v26";
-```
-
 ## 依存パッケージ
 
 - [iab-openrtb](https://github.com/hogekai/types-iab-openrtb): OpenRTB 型定義

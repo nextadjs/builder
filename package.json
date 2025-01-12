@@ -1,0 +1,17 @@
+{
+  "name": "@nextad/builder",
+  "version": "0.0.0",
+  "description": "",
+  "scripts": {
+    "test": "vitest",
+    "tsup": "tsup"
+  },
+  "keywords": [],
+  "author": "Kai Miyamoto",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "tsup": "^8.3.5",
+    "vitest": "^2.1.8"
+  }
+}

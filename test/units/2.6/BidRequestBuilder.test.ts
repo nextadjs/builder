@@ -213,7 +213,6 @@ describe("Bid Request Builder Behavior", () => {
           [method](newValue);
 
         const result = sut.build();
-        console.log(result);
         expect(result[method.slice(4).toLowerCase()]).toEqual(expectedValue);
       }
     );

@@ -16,7 +16,6 @@ import type {
  */
 export class BidRequestBuilder {
   private request: Partial<BidRequestV26>;
-  private currentImp: Partial<ImpV26> | null = null;
   private commonImpProps: Partial<ImpV26> = {};
 
   constructor() {
@@ -47,7 +46,6 @@ export class BidRequestBuilder {
       this.request.imp = [];
     }
     this.request.imp.push(newImp);
-    this.currentImp = newImp;
     return this;
   }
 

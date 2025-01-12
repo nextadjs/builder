@@ -16,9 +16,10 @@ import type {
  */
 export class BidRequestBuilder {
   private request: Partial<BidRequestV26>;
+  private currentImp: Partial<ImpV26> | null = null;
   private commonImpProps: Partial<ImpV26> = {};
 
-  constructor() {
+  public constructor() {
     this.request = {
       id: uuid(),
       imp: [],
@@ -28,7 +29,7 @@ export class BidRequestBuilder {
   /**
    * Sets the ID of the bid request
    */
-  withId(id: string): this {
+  public withId(id: string): this {
     this.request.id = id;
     return this;
   }
@@ -36,7 +37,7 @@ export class BidRequestBuilder {
   /**
    * Adds an impression to the bid request
    */
-  addImp(props: Partial<ImpV26> = {}): this {
+  public addImp(props: Partial<ImpV26> = {}): this {
     const newImp: ImpV26 = {
       id: uuid(),
       ...props,
@@ -46,13 +47,16 @@ export class BidRequestBuilder {
       this.request.imp = [];
     }
     this.request.imp.push(newImp);
+    this.currentImp = newImp;
     return this;
   }
+
+
 
   /**
    * Sets the site object
    */
-  withSite(site: Partial<SiteV26>): this {
+  public withSite(site: Partial<SiteV26>): this {
     this.request.site = {
       ...this.request.site,
       ...site,
@@ -63,7 +67,7 @@ export class BidRequestBuilder {
   /**
    * Sets the app object
    */
-  withApp(app: Partial<AppV26>): this {
+  public withApp(app: Partial<AppV26>): this {
     this.request.app = {
       ...this.request.app,
       ...app,
@@ -74,7 +78,7 @@ export class BidRequestBuilder {
   /**
    * Sets the DOOH object
    */
-  withDOOH(dooh: Partial<DOOHV26>): this {
+  public withDOOH(dooh: Partial<DOOHV26>): this {
     this.request.dooh = {
       ...this.request.dooh,
       ...dooh,
@@ -85,7 +89,7 @@ export class BidRequestBuilder {
   /**
    * Sets the device object
    */
-  withDevice(device: Partial<DeviceV26>): this {
+  public withDevice(device: Partial<DeviceV26>): this {
     this.request.device = {
       ...this.request.device,
       ...device,
@@ -96,7 +100,7 @@ export class BidRequestBuilder {
   /**
    * Sets the user object
    */
-  withUser(user: Partial<UserV26>): this {
+  public withUser(user: Partial<UserV26>): this {
     this.request.user = {
       ...this.request.user,
       ...user,
@@ -107,7 +111,7 @@ export class BidRequestBuilder {
   /**
    * Sets the test mode flag
    */
-  withTest(test: 0 | 1): this {
+  public  withTest(test: 0 | 1): this {
     this.request.test = test;
     return this;
   }
@@ -115,7 +119,7 @@ export class BidRequestBuilder {
   /**
    * Sets the auction type
    */
-  withAuctionType(at: number): this {
+  public withAuctionType(at: number): this {
     this.request.at = at;
     return this;
   }
@@ -123,7 +127,7 @@ export class BidRequestBuilder {
   /**
    * Sets the maximum time in milliseconds for receiving bids
    */
-  withTimeout(tmax: number): this {
+  public withTimeout(tmax: number): this {
     this.request.tmax = tmax;
     return this;
   }
@@ -131,7 +135,7 @@ export class BidRequestBuilder {
   /**
    * Sets the allowed list of buyer seats
    */
-  withWhitelistedSeats(wseat: string[]): this {
+  public withWhitelistedSeats(wseat: string[]): this {
     this.request.wseat = wseat;
     return this;
   }
@@ -139,7 +143,7 @@ export class BidRequestBuilder {
   /**
    * Sets the block list of buyer seats
    */
-  withBlockedSeats(bseat: string[]): this {
+  public withBlockedSeats(bseat: string[]): this {
     this.request.bseat = bseat;
     return this;
   }
@@ -147,7 +151,7 @@ export class BidRequestBuilder {
   /**
    * Sets the all impressions flag
    */
-  withAllImps(allimps: 0 | 1): this {
+  public withAllImps(allimps: 0 | 1): this {
     this.request.allimps = allimps;
     return this;
   }
@@ -155,7 +159,7 @@ export class BidRequestBuilder {
   /**
    * Sets the allowed currencies
    */
-  withCurrencies(cur: string[]): this {
+  public withCurrencies(cur: string[]): this {
     this.request.cur = cur;
     return this;
   }
@@ -163,7 +167,7 @@ export class BidRequestBuilder {
   /**
    * Sets the allowed languages using ISO-639-1-alpha-2
    */
-  withLanguages(wlang: string[]): this {
+  public withLanguages(wlang: string[]): this {
     this.request.wlang = wlang;
     return this;
   }
@@ -171,7 +175,7 @@ export class BidRequestBuilder {
   /**
    * Sets the allowed languages using IETF BCP 47
    */
-  withLanguagesBCP47(wlangb: string[]): this {
+  public withLanguagesBCP47(wlangb: string[]): this {
     this.request.wlangb = wlangb;
     return this;
   }
@@ -179,7 +183,7 @@ export class BidRequestBuilder {
   /**
    * Sets the allowed advertiser categories
    */
-  withAllowedCategories(acat: string[]): this {
+  public withAllowedCategories(acat: string[]): this {
     this.request.acat = acat;
     return this;
   }
@@ -187,7 +191,7 @@ export class BidRequestBuilder {
   /**
    * Sets the blocked advertiser categories
    */
-  withBlockedCategories(bcat: string[]): this {
+  public withBlockedCategories(bcat: string[]): this {
     this.request.bcat = bcat;
     return this;
   }
@@ -195,7 +199,7 @@ export class BidRequestBuilder {
   /**
    * Sets the category taxonomy
    */
-  withCategoryTaxonomy(cattax: number): this {
+  public withCategoryTaxonomy(cattax: number): this {
     this.request.cattax = cattax;
     return this;
   }
@@ -203,7 +207,7 @@ export class BidRequestBuilder {
   /**
    * Sets the blocked advertiser domains
    */
-  withBlockedAdvertisers(badv: string[]): this {
+  public withBlockedAdvertisers(badv: string[]): this {
     this.request.badv = badv;
     return this;
   }
@@ -211,7 +215,7 @@ export class BidRequestBuilder {
   /**
    * Sets the blocked applications
    */
-  withBlockedApps(bapp: string[]): this {
+  public withBlockedApps(bapp: string[]): this {
     this.request.bapp = bapp;
     return this;
   }
@@ -219,7 +223,7 @@ export class BidRequestBuilder {
   /**
    * Sets the source object
    */
-  withSource(source: SourceV26): this {
+  public withSource(source: SourceV26): this {
     this.request.source = source;
     return this;
   }
@@ -227,7 +231,7 @@ export class BidRequestBuilder {
   /**
    * Sets the regulations object
    */
-  withRegulations(regs: RegsV26): this {
+  public withRegulations(regs: RegsV26): this {
     this.request.regs = regs;
     return this;
   }
@@ -235,7 +239,7 @@ export class BidRequestBuilder {
   /**
    * Sets extension data
    */
-  withExt(ext: Record<string, unknown>): this {
+  public withExt(ext: Record<string, unknown>): this {
     this.request.ext = {
       ...this.request.ext,
       ...ext,
@@ -246,7 +250,7 @@ export class BidRequestBuilder {
   /**
    * Sets common properties for all impressions
    */
-  withCommonImp(props: Partial<ImpV26>): this {
+  public withCommonImp(props: Partial<ImpV26>): this {
     this.commonImpProps = {
       ...this.commonImpProps,
       ...props,
@@ -267,7 +271,7 @@ export class BidRequestBuilder {
   /**
    * Builds and returns the final BidRequest object
    */
-  build(): BidRequestV26 {
+  public build(): BidRequestV26 {
     return (this.request = {
       ...this.request,
       imp: (this.request.imp || []).map((imp) => ({

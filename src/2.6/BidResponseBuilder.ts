@@ -10,7 +10,7 @@ export class BidResponseBuilder {
   private currentSeatBid: Partial<SeatBidV26> | null = null;
   private commonBidProps: Partial<BidV26> = {};
 
-  constructor() {
+  public constructor() {
     this.response = {
       seatbid: [],
     };
@@ -19,7 +19,7 @@ export class BidResponseBuilder {
   /**
    * Sets the ID of the bid response
    */
-  withId(id: string): this {
+  public withId(id: string): this {
     this.response.id = id;
     return this;
   }
@@ -27,7 +27,7 @@ export class BidResponseBuilder {
   /**
    * Sets the bidder generated response ID
    */
-  withBidId(bidid: string): this {
+  public withBidId(bidid: string): this {
     this.response.bidid = bidid;
     return this;
   }
@@ -35,7 +35,7 @@ export class BidResponseBuilder {
   /**
    * Sets the bid currency
    */
-  withCurrency(cur: string): this {
+  public withCurrency(cur: string): this {
     this.response.cur = cur;
     return this;
   }
@@ -43,7 +43,7 @@ export class BidResponseBuilder {
   /**
    * Sets custom data for cookie
    */
-  withCustomData(customdata: string): this {
+  public withCustomData(customdata: string): this {
     this.response.customdata = customdata;
     return this;
   }
@@ -51,7 +51,7 @@ export class BidResponseBuilder {
   /**
    * Sets the reason for not bidding
    */
-  withNoBidReason(nbr: NoBidReasonCode): this {
+  public withNoBidReason(nbr: NoBidReasonCode): this {
     this.response.nbr = nbr;
     return this;
   }
@@ -59,7 +59,7 @@ export class BidResponseBuilder {
   /**
    * Sets extension data
    */
-  withExtension(ext: Record<string, unknown>): this {
+  public withExtension(ext: Record<string, unknown>): this {
     this.response.ext = {
       ...this.response.ext,
       ...ext,
@@ -70,7 +70,7 @@ export class BidResponseBuilder {
   /**
    * Begins a new seatbid section
    */
-  beginSeatBid(seat?: string): this {
+  public beginSeatBid(seat?: string): this {
     this.currentSeatBid = {
       bid: [],
       seat,
@@ -82,7 +82,7 @@ export class BidResponseBuilder {
   /**
    * Sets common properties for all bids
    */
-  withCommonBid(props: Partial<BidV26>): this {
+  public withCommonBid(props: Partial<BidV26>): this {
     this.commonBidProps = {
       ...this.commonBidProps,
       ...props,
@@ -93,7 +93,7 @@ export class BidResponseBuilder {
   /**
    * Sets group flag for the current seatbid
    */
-  withGroup(group: 0 | 1): this {
+  public withGroup(group: 0 | 1): this {
     if (this.currentSeatBid) {
       this.currentSeatBid.group = group;
     }
@@ -103,7 +103,7 @@ export class BidResponseBuilder {
   /**
    * Adds a new bid to the current seatbid
    */
-  addBid(props: Partial<BidV26> & { impid: string; price: number }): this {
+  public addBid(props: Partial<BidV26> & { impid: string; price: number }): this {
     if (!this.currentSeatBid) {
       this.beginSeatBid();
     }
@@ -120,7 +120,7 @@ export class BidResponseBuilder {
   /**
    * Shortcut method for adding a banner bid
    */
-  addBannerBid(
+  public addBannerBid(
     props: Partial<BidV26> & { impid: string; price: number }
   ): this {
     this.addBid({
@@ -134,7 +134,7 @@ export class BidResponseBuilder {
   /**
    * Shortcut method for adding a video bid
    */
-  addVideoBid(props: Partial<BidV26> & { impid: string; price: number }): this {
+  public addVideoBid(props: Partial<BidV26> & { impid: string; price: number }): this {
     this.addBid({
       mtype: 2,
       ...props,
@@ -146,7 +146,7 @@ export class BidResponseBuilder {
   /**
    * Shortcut method for adding a native bid
    */
-  addNativeBid(
+  public addNativeBid(
     props: Partial<BidV26> & { impid: string; price: number }
   ): this {
     this.addBid({
@@ -160,7 +160,7 @@ export class BidResponseBuilder {
   /**
    * Builds and returns the final BidResponse object
    */
-  build(): BidResponseV26 {
+  public build(): BidResponseV26 {
     if (Object.keys(this.commonBidProps).length > 0 && this.response.seatbid) {
       for (const seatbid of this.response.seatbid) {
         seatbid.bid = seatbid.bid.map((bid) => ({

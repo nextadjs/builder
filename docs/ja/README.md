@@ -103,6 +103,58 @@ builder
 const response = builder.build();
 ```
 
+### デコレーターパターンによる固有の振る舞いの追加
+
+このライブラリは、ビルダーの機能を拡張するためにデコレータパターンをサポートしています。デコレータパターンを使用することで、以下のような拡張が可能です。
+
+- DSP/AdExchange/SSP固有のパラメーターの追加
+- 特定のフォーマットへの変換
+- バリデーションの追加
+- ログ出力や監視機能の追加
+
+```typescript
+import { BidRequestBuilderDecorator } from '@nextad/builder/v26';
+
+class DV360BidRequestDecorator extends BidRequestBuilderDecorator {
+  public withExt(ext: Record<string, unknown>): this {
+    return super.withExt({
+      ...ext,
+      google: {
+        billing_id: "123456789",
+        publisher_id: "pub-1234567890",
+      },
+    });
+  }
+
+  public addImp(props?: Partial<ImpV26>): this {
+    return super.addImp({
+      ...props,
+      ext: {
+        ...props?.ext,
+        google: {
+          slot_visibility: "ABOVE_THE_FOLD",
+        },
+      },
+    });
+  }
+}
+
+const dv360Builder = new DV360BidRequestDecorator(new BidRequestBuilder());
+const dv360Request = dv360Builder
+  .withId("request-1")
+  .withSite({
+    id: "site1",
+    domain: "example.com",
+  })
+  .addImp({
+    banner: {
+      w: 300,
+      h: 250,
+    },
+  })
+  .build();
+```
+
 ## API ドキュメント
 
 詳細な API ドキュメントは[API.md](./API.md)を参照してください。

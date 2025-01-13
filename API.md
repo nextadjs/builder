@@ -47,7 +47,7 @@ const builder = new BidRequestBuilder();
 
 ##### build
 
-- build(): Returns the final bid request. 
+- build(): Returns the final bid request.
 
 #### Usage
 
@@ -63,6 +63,64 @@ const request = new BidRequestBuilder()
     secure: 1,
     bidfloor: 1.0,
     bidfloorcur: "USD",
+  })
+  .addImp({
+    banner: {
+      w: 300,
+      h: 250,
+    },
+  })
+  .build();
+```
+
+### BidRequestBuilderDecorator
+
+#### Import
+
+```typescript
+import { BidRequestBuilderDecorator } from "@nextad/builder/v26";
+// By extending the base decorator, you can implement specialized functionality.
+// import { Imp } from 'iab-openrtb/v26';
+```
+
+#### Usage
+
+In most cases, you should import the OpenRTB v2.6 type definitions along with it.
+
+```typescript
+import { BidRequestBuilderDecorator } from "@nextad/builder/v26";
+import { Imp } from "iab-openrtb/v26";
+
+class DV360BidRequestDecorator extends BidRequestBuilderDecorator {
+  public withExt(ext: Record<string, unknown>): this {
+    return super.withExt({
+      ...ext,
+      google: {
+        billing_id: "123456789",
+        publisher_id: "pub-1234567890",
+      },
+    });
+  }
+
+  public addImp(props?: Partial<Imp>): this {
+    return super.addImp({
+      ...props,
+      ext: {
+        ...props?.ext,
+        google: {
+          slot_visibility: "ABOVE_THE_FOLD",
+        },
+      },
+    });
+  }
+}
+
+const dv360Builder = new DV360BidRequestDecorator(new BidRequestBuilder());
+const dv360Request = dv360Builder
+  .withId("request-1")
+  .withSite({
+    id: "site1",
+    domain: "example.com",
   })
   .addImp({
     banner: {
@@ -132,6 +190,54 @@ const response = new BidResponseBuilder()
   .addBannerBid("imp1", 3.5, "<creative>", {
     w: 300,
     h: 250,
+  })
+  .build();
+```
+
+### BidResponseBuilderDecorator
+
+#### Import
+
+```typescript
+import { BidResponseBuilderDecorator } from "@nextad/builder/v26";
+// By extending the base decorator, you can implement specialized functionality.
+// import { Bid } from 'iab-openrtb/v26';
+```
+
+#### Usage
+
+In most cases, you should import the OpenRTB v2.6 type definitions along with it.
+
+```typescript
+import { BidResponseBuilderDecorator } from "@nextad/builder/v26";
+import { Bid } from "iab-openrtb/v26";
+
+class TTDBidResponseDecorator extends BidResponseBuilderDecorator {
+  public addBid(
+    props: Partial<BidV26> & { impid: string; price: number }
+  ): this {
+    return super.addBid({
+      ...props,
+      ext: {
+        ...props.ext,
+        ttd: {
+          advertiser_id: "ttd-adv-123",
+          campaign_id: "ttd-camp-456",
+        },
+      },
+    });
+  }
+}
+
+const ttdBuilder = new TTDBidResponseDecorator(new BidResponseBuilder());
+const ttdResponse = ttdBuilder
+  .withId("response-1")
+  .withCurrency("USD")
+  .beginSeatBid("ttd-seat")
+  .addBannerBid({
+    impid: "imp1",
+    price: 3.5,
+    adm: "<creative>",
   })
   .build();
 ```

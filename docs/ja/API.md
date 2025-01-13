@@ -74,6 +74,64 @@ const request = new BidRequestBuilder()
   .build();
 ```
 
+### BidRequestBuilderDecorator
+
+#### インポート
+
+```typescript
+import { BidRequestBuilderDecorator } from "@nextad/builder/v26";
+// ほとんどの場合、OpenRTB version 2.6の型定義も一緒にインポートします
+// import { Imp } from 'iab-openrtb/v26';
+```
+
+#### 使用方法
+
+基底デコレーターを継承することで特定の部分に集中して実装をすることが可能です。
+
+```typescript
+import { BidRequestBuilderDecorator } from "@nextad/builder/v26";
+import { Imp } from "iab-openrtb/v26";
+
+class DV360BidRequestDecorator extends BidRequestBuilderDecorator {
+  public withExt(ext: Record<string, unknown>): this {
+    return super.withExt({
+      ...ext,
+      google: {
+        billing_id: "123456789",
+        publisher_id: "pub-1234567890",
+      },
+    });
+  }
+
+  public addImp(props?: Partial<Imp>): this {
+    return super.addImp({
+      ...props,
+      ext: {
+        ...props?.ext,
+        google: {
+          slot_visibility: "ABOVE_THE_FOLD",
+        },
+      },
+    });
+  }
+}
+
+const dv360Builder = new DV360BidRequestDecorator(new BidRequestBuilder());
+const dv360Request = dv360Builder
+  .withId("request-1")
+  .withSite({
+    id: "site1",
+    domain: "example.com",
+  })
+  .addImp({
+    banner: {
+      w: 300,
+      h: 250,
+    },
+  })
+  .build();
+```
+
 ### BidResponseBuilder
 
 OpenRTB 2.6 の入札レスポンスオブジェクトを構築するためのビルダー。
@@ -133,6 +191,54 @@ const response = new BidResponseBuilder()
   .addBannerBid("imp1", 3.5, "<creative>", {
     w: 300,
     h: 250,
+  })
+  .build();
+```
+
+### BidResponseBuilderDecorator
+
+#### インポート
+
+```typescript
+import { BidResponseBuilderDecorator } from "@nextad/builder/v26";
+// ほとんどの場合、OpenRTB version 2.6の型定義も一緒にインポートします
+// import { Bid } from 'iab-openrtb/v26';
+```
+
+#### 使用方法
+
+基底デコレーターを継承することで特定の部分に集中して実装をすることが可能です。
+
+```typescript
+import { BidResponseBuilderDecorator } from "@nextad/builder/v26";
+import { Bid } from "iab-openrtb/v26";
+
+class TTDBidResponseDecorator extends BidResponseBuilderDecorator {
+  public addBid(
+    props: Partial<BidV26> & { impid: string; price: number }
+  ): this {
+    return super.addBid({
+      ...props,
+      ext: {
+        ...props.ext,
+        ttd: {
+          advertiser_id: "ttd-adv-123",
+          campaign_id: "ttd-camp-456",
+        },
+      },
+    });
+  }
+}
+
+const ttdBuilder = new TTDBidResponseDecorator(new BidResponseBuilder());
+const ttdResponse = ttdBuilder
+  .withId("response-1")
+  .withCurrency("USD")
+  .beginSeatBid("ttd-seat")
+  .addBannerBid({
+    impid: "imp1",
+    price: 3.5,
+    adm: "<creative>",
   })
   .build();
 ```

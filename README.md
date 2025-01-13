@@ -103,6 +103,58 @@ builder
 const response = builder.build();
 ```
 
+### Adding Custom Behavior Using the Decorator Pattern
+
+This library supports the Decorator Pattern to extend functionality. Using decorators, you can customize the builder`s behavior is various ways.
+
+- Add custom parameters for DSP/AdExchange/SSP
+- Convert to specific formats
+- Add validation rules
+- Implement logging and monitoring capabilities
+
+```typescript
+import { BidRequestBuilderDecorator } from "@nextad/builder/v26";
+
+class DV360BidRequestDecorator extends BidRequestBuilderDecorator {
+  public withExt(ext: Record<string, unknown>): this {
+    return super.withExt({
+      ...ext,
+      google: {
+        billing_id: "123456789",
+        publisher_id: "pub-1234567890",
+      },
+    });
+  }
+
+  public addImp(props?: Partial<ImpV26>): this {
+    return super.addImp({
+      ...props,
+      ext: {
+        ...props?.ext,
+        google: {
+          slot_visibility: "ABOVE_THE_FOLD",
+        },
+      },
+    });
+  }
+}
+
+const dv360Builder = new DV360BidRequestDecorator(new BidRequestBuilder());
+const dv360Request = dv360Builder
+  .withId("request-1")
+  .withSite({
+    id: "site1",
+    domain: "example.com",
+  })
+  .addImp({
+    banner: {
+      w: 300,
+      h: 250,
+    },
+  })
+  .build();
+```
+
 ## API Documents
 
 For detailed API documentation, please refer to [API.md](./API.md).

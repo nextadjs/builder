@@ -10,7 +10,9 @@ import type {
   ImpV26,
   AppV26,
   DOOHV26,
+  GeoV26,
 } from "@/types/openrtb";
+import type { Geo } from "iab-openrtb/v26";
 
 /**
  * Builder for creating OpenRTB 2.6 BidRequest objects
@@ -243,6 +245,17 @@ export class BidRequestBuilder implements IV26BidRequestBuilder {
       ...this.request.ext,
       ...ext,
     };
+    return this;
+  }
+
+  public withGeo(geo: Partial<GeoV26>): this {
+    this.request.device = {
+      geo: {
+        ...this.request.device?.geo,
+        ...geo,
+      },
+    };
+
     return this;
   }
 

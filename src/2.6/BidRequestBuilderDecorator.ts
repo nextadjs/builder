@@ -10,6 +10,7 @@ import type {
   AppV26,
   DOOHV26,
 } from "@/types/openrtb";
+import type { Geo } from "iab-openrtb/v26";
 
 /**
  * Abstract base decorator class for BidRequestBuilder
@@ -141,6 +142,11 @@ export abstract class BidRequestBuilderDecorator
 
   public withCommonImp(props: Partial<ImpV26>): this {
     this.builder.withCommonImp(props);
+    return this;
+  }
+
+  public withGeo(geo: Partial<Geo>): this {
+    this.builder.withGeo(geo);
     return this;
   }
 

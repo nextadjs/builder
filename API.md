@@ -39,6 +39,7 @@ const builder = new BidRequestBuilder();
 - withUser(user: Partial<UserV26>): Sets the user object.
 - withSource(source: Partial<SourceV26>): Sets the source object.
 - withRegulations(regs: Partial<RegsV26>): Sets the regulation object.
+- withGeo(geo: Partial<GeoV26>): Sets the geo object. (device.geo)
 
 ##### Impression management
 

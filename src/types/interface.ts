@@ -10,6 +10,7 @@ import type {
   DOOHV26,
   BidV26,
   BidResponseV26,
+  GeoV26,
 } from "@/types/openrtb";
 import type { NoBidReasonCode } from "iab-openrtb/v26";
 
@@ -42,6 +43,7 @@ export interface IV26BidRequestBuilder {
   withRegulations(regs: RegsV26): this;
   withExt(ext: Record<string, unknown>): this;
   withCommonImp(props: Partial<ImpV26>): this;
+  withGeo(geo: Partial<GeoV26>): this;
   build(): BidRequestV26;
 }
 

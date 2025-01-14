@@ -40,6 +40,7 @@ const builder = new BidRequestBuilder();
 - withUser(user: Partial<UserV26>): ユーザーオブジェクトを設定します
 - withSource(source: Partial<SourceV26>): ソースオブジェクトを設定します
 - withRegulations(regs: Partial<RegsV26>): 規制オブジェクトを設定します
+- withGeo(geo: Partial<GeoV26>): Geoオブジェクトを設定します。(device.geo)
 
 ##### インプレッション管理
 

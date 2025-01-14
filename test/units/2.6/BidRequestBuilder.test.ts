@@ -98,6 +98,12 @@ describe("Bid Request Builder Behavior", () => {
       expectedKey: "ext",
       expectedValue: { custom: "value" },
     },
+    {
+      method: "withGeo",
+      value: { country: "jp" },
+      expectedKey: "device",
+      expectedValue: { geo: { country: "jp" } },
+    },
   ])(
     "$method で指定した値 $value が $expectedKey に設定される",
     ({ method, value, expectedKey, expectedValue }) => {

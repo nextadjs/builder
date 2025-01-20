@@ -17,6 +17,12 @@ export class BidResponseBuilder implements IV26BidResponseBuilder {
     };
   }
 
+  public reset(): this {
+    const newInstance = new BidResponseBuilder();
+    Object.assign(this, newInstance);
+    return this;
+  }
+
   /**
    * Sets the ID of the bid response
    */

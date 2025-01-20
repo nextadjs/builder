@@ -49,6 +49,7 @@ const builder = new BidRequestBuilder();
 ##### build
 
 - build(): Returns the final bid request.
+- reset(): Resets the instance
 
 #### Usage
 
@@ -176,6 +177,7 @@ const builder = new BidResponseBuilder();
 ##### Build
 
 - build(): Returns the final BidResponse object
+- reset(): Resets the instance
 
 #### Usage
 

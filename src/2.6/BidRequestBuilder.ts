@@ -29,6 +29,12 @@ export class BidRequestBuilder implements IV26BidRequestBuilder {
     };
   }
 
+  public reset(): this {
+    const newInstance = new BidRequestBuilder();
+    Object.assign(this, newInstance);
+    return this;
+  }
+
   /**
    * Sets the ID of the bid request
    */

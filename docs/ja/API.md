@@ -50,6 +50,7 @@ const builder = new BidRequestBuilder();
 ##### ビルド
 
 - build(): 最終的な BidRequest オブジェクトを返します
+- reset(): インスタンスを完全にリセットします
 
 #### 使用例
 
@@ -176,7 +177,8 @@ const builder = new BidResponseBuilder();
 
 ##### ビルド
 
-- build(): 最終的な BidResponse オブジェクトを返します。
+- build(): 最終的な BidResponse オブジェクトを返します
+- reset(): インスタンスを完全にリセットします
 
 #### 使用例
 

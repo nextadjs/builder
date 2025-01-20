@@ -45,6 +45,7 @@ export interface IV26BidRequestBuilder {
   withCommonImp(props: Partial<ImpV26>): this;
   withGeo(geo: Partial<GeoV26>): this;
   build(): BidRequestV26;
+  reset(): this;
 }
 
 /**
@@ -66,4 +67,5 @@ export interface IV26BidResponseBuilder {
   addVideoBid(props: Partial<BidV26> & { impid: string; price: number }): this;
   addNativeBid(props: Partial<BidV26> & { impid: string; price: number }): this;
   build(): BidResponseV26;
+  reset(): this;
 }

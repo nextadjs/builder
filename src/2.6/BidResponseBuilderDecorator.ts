@@ -93,4 +93,9 @@ export abstract class BidResponseBuilderDecorator
   public build(): BidResponseV26 {
     return this.builder.build();
   }
+
+  public reset(): this {
+    this.builder.reset();
+    return this;
+  }
 }

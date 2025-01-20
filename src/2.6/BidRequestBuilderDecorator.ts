@@ -153,4 +153,9 @@ export abstract class BidRequestBuilderDecorator
   public build(): BidRequestV26 {
     return this.builder.build();
   }
+
+  public reset(): this {
+    this.builder.reset();
+    return this;
+  }
 }

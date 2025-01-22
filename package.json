@@ -36,8 +36,10 @@
     "vitest": "^2.1.8"
   },
   "dependencies": {
-    "iab-openrtb": "^0.3.10",
     "uuid": "^11.0.5"
+  },
+  "peerDependencies": {
+    "iab-openrtb": "^0.3.10"
   },
   "files": [
     "dist/",

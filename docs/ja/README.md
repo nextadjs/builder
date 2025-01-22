@@ -16,13 +16,13 @@ OpenRTB 2.6 の入札リクエストとレスポンスを構築するための T
 npm:
 
 ```bash
-npm install @nextad/builder iab-openrtb
+npm install @nextad/builder
 ```
 
 pnpm:
 
 ```bash
-pnpm add @nextad/builder iab-openrtb
+pnpm add @nextad/builder
 ```
 
 ## 使い方

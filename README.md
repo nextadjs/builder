@@ -16,13 +16,13 @@ A TypeScript-enabled builder library for constructing OpenRTB 2.6 bid requests a
 npm:
 
 ```bash
-npm install @nextad/builder iab-openrtb
+npm install @nextad/builder
 ```
 
 pnpm:
 
 ```bash
-pnpm add @nextad/builder iab-openrtb
+pnpm add @nextad/builder
 ```
 
 ## Usage

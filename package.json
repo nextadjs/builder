@@ -1,6 +1,6 @@
 {
   "name": "@nextad/builder",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "A fluent builder library for OpenRTB 2.6 bid requests and responses with TypeScript support",
   "scripts": {
     "test": "vitest",
